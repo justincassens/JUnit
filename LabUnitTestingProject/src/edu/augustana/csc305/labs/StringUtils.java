@@ -27,7 +27,7 @@ public class StringUtils {
 		for (int i = 0; i < message.length(); i++) {
 			char ch = message.charAt(i);
 			if (ch == ' ') {
-				output.append(message);
+				output.append(' ');
 			} else // it's an upper case letter of the alphabet
 			{
 				char newCh = (char) (ch + keyShiftAmount);
@@ -42,7 +42,8 @@ public class StringUtils {
 	
 	public static void main(String[] args) {
 		
-
+//		System.out.print(caesarCipher("THE HAPPY MOOSE", 1));
+		
 	}
 
 }

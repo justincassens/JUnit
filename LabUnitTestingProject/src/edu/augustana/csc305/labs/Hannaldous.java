@@ -21,40 +21,45 @@ package edu.augustana.csc305.labs;
 //         (read Skrien appendix B, pp 318-331)
 
 public class Hannaldous {
-	
-	// method one to do the thing for Monday's meeting 
-	public static int howbad(int n, String[] x, double roXORZ) {
-		int j = x.length - 1;
-		int ret = 0;
-		n = n; // n = ? 
-		for (int i = 0; i < x.length; i = i + 1) 
-		{
-		if (x[j].length() < n || Help(x[j]).equals("y"))
-			ret++;
-	j--;  }
-		return ret;
-						}
-	// method two helps, and i wrote it at 11:58 p.m. on sunday... 
-	// couldn't find it on stack overflow, so I rolled my pwn. 
-	static String Help(String MAYBE) 
-	{		
-		int yeah = -1;
-		while (yeah++ < MAYBE.length() - 1) {
-			char izard /*PoKeMoN babee*/ = MAYBE.charAt(yeah); 
-			
-			if (! (izard >= 'a' && izard <='z'|| izard >='A' && izard <= 'Z')) return "n"; }
-		return "y";
+
+	/**
+	 * Counts the number of invalid passwords from a list. A password is "invalid"
+	 * if it is shorter than the wordLength or all characters are letters.
+	 * 
+	 * @param wordLength - minimum password length
+	 * @param arr        - array of passwords being checked
+	 * @return count - number of invalid passwords from the array
+	 */
+	public static int numBadPasswords(int wordLength, String[] arr) {
+		int count = 0;
+		for (int i = 0; i < arr.length; i++) {
+			// checks if password is too short or all letter characters
+			if (arr[i].length() < wordLength || CheckCharacter(arr[i]).equals("y"))
+				count++;
+		}
+		return count;
 	}
-	
-	
+
+	// checks if the password is all letter characters
+	static String CheckCharacter(String password) {
+		int i = -1;
+		// checks all characters in the string
+		while (i++ < password.length() - 1) {
+			char ch = password.charAt(i);
+			if (!(ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z'))
+				return "n";// at least one character in the string is not a letter
+		}
+		return "y";// all characters are letters
+	}
+
 	public static void main(String[] args) {
-		
-		System.out.println(Help("bigmoose$"));
-		System.out.println(Help("emusareawesome"));
-		System.out.println(Help("17"));
+
+		System.out.println(CheckCharacter("bigmoose$"));
+		System.out.println(CheckCharacter("emusareawesome"));
+		System.out.println(CheckCharacter("17"));
 
 		String[] passwords = new String[] { "bigmoose$", "emusareawesome", "123goodbye", "ok&y", "17", "cat" };
-		System.out.println(howbad(8,passwords, 0.0));
+		System.out.println(numBadPasswords(8, passwords));
 	}
 
 }
